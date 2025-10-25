@@ -1,6 +1,9 @@
 package com.swingy.controller;
 
 import jakarta.validation.constraints.Pattern;
+import javax.swing.*;
+import java.awt.*;
+import java.io.InputStream;
 
 public class controller {
 
@@ -9,11 +12,42 @@ public class controller {
 
     }
 
-    public static void start()
+    public static void start(String mode)
     {
-        create_character();
+        //Create Frame
+        JFrame frame = new JFrame();
+
+        frame.setSize(700, 500);
+        frame.setLayout(null);
+        frame.getContentPane().setBackground(Color.DARK_GRAY);
         
-        while(true){}
+        //Show First Scene (TITLE)
+
+        JLabel title = new JLabel("SWINGY");
+        title.setBounds(250, 100, 500, 300);
+        title.setForeground(Color.WHITE);
+
+        try(InputStream is = controller.class.getResourceAsStream("/fonts/MedievalSharp/MedievalSharp-Regular.ttf")) 
+        {
+
+            if (is == null)
+            {
+                throw new IllegalStateException("No se encontro la fuente");
+            }
+
+            Font MedievalSharp = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(48f);
+            title.setFont(MedievalSharp);
+            frame.add(title);
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        //create_character();
+        
+        frame.setVisible(true);
     }
 
     private static void create_character()

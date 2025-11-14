@@ -6,6 +6,8 @@ public class App
 {
     public static void main( String[] args )
     {
-        controller.start("gui");
+        controller con = new controller();
+        
+        con.start("gui");
     }
 }

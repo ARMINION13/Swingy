@@ -1,4 +1,5 @@
 package com.swingy.model;
+
 import java.io.BufferedWriter;
 import java.io.BufferedReader;
 import java.io.File;

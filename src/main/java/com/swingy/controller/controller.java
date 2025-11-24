@@ -1,7 +1,7 @@
 package com.swingy.controller;
 
-import com.swingy.model.model;
-import com.swingy.view.view;
+import com.swingy.model.*;
+import com.swingy.view.*;
 
 public class controller {
 
@@ -15,7 +15,11 @@ public class controller {
 
     public void start()
     {
+        c_params param = new c_params();
         main_view.start_frame("gui");
+        //to do hacer que en vez de un string fixed sea uno resultado de las elecciones del jugador
+        main_model = new model(param);
+        System.out.println(param.to_str(param));
     }
     
 }

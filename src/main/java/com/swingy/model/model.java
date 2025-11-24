@@ -19,7 +19,6 @@ public class model {
     {
         read_csv();
         this.params = new c_params(saves.get(save_file));
-        //to do: inicializar la clase c_params con los archivos del csv, correspondientes al save_file especifiacado
     }
 
     public model (c_params new_save)

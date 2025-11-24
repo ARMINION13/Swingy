@@ -23,8 +23,8 @@ public class model {
 
     public model (c_params new_save)
     {
-        read_csv();
         params = new_save; 
+        write_csv();
     }
     
     //to do: crear un nuevo save file en el csv al salir del juego
@@ -36,7 +36,7 @@ public class model {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("save_files.csv")); 
             BufferedReader reader = new BufferedReader(new FileReader("save_files.csv")))
         {
-            if (!csv.exists()) // si no existe lo crea
+            if (csv.exists()) // si no existe lo crea
             {
                 writer.write("name,class,level,exp,xposition,yposition");
                 writer.newLine();
@@ -64,13 +64,11 @@ public class model {
         {
             if (csv.exists()) // si no existe lo crea
             {
-                Iterator<String> it = saves.iterator();
-                while (it.hasNext())
-                {
-                    writer.write(it.next());
-                    writer.newLine();
-                }
+                writer.write("name,class,level,exp,xposition,yposition");
+                writer.newLine();
             }
+            writer.write(params.to_str(params));
+            writer.newLine();
         }
         catch (IOException e)
         {

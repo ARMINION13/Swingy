@@ -9,24 +9,39 @@ import jakarta.validation.constraints.Pattern;
 
 public class controller {
 
-    view main_view;
-    model main_model;
+    private view main_view;
+    private model main_model;
 
     public controller()
     {
-        main_view = new view();
+        main_model = new model();
+        main_view = new view(main_model.get_saves());
     }
 
     public void start()
     {
-        main_view.frame.add(main_view.title_panel);
-        main_view.frame.add(main_view.button_panel, BorderLayout.SOUTH);
-        main_view.frame.setVisible(true);
+        String input;
 
-        String character = main_view.create_character_terminal();
-        c_params param = new c_params(character);
+        //Menu Principal
+
+        main_view.frame.add(main_view.title_panel); //Mostrar el titulo del juego
+        main_view.frame.add(main_view.scroll, BorderLayout.SOUTH); //Mostrar los botones del menu principal
+        main_view.frame.setVisible(true);
+        input = main_view.main_menu_terminal();
+
+        if (input.equals("Continue"))
+        {
+            input = main_view.select_save_terminal();
+            main_model.set_params(new c_params(input));
+        }
+        if (input.equals("New Game"))
+        {
+            input = main_view.create_character_terminal();
+            main_model.set_params(new c_params(input));
+        }
+
+        main_model.save_game();
         //to do hacer que en vez de un string fixed sea uno resultado de las elecciones del jugador
-        main_model = new model(param);
     }
     
 }

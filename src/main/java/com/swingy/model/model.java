@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,35 +14,24 @@ public class model {
 
 
     private c_params params;
-    private List<String> saves;
+    private List<String> saves = new ArrayList<String>();
 
-    public model (int save_file)
+    public model ()
     {
         read_csv();
-        this.params = new c_params(saves.get(save_file));
     }
 
-    public model (c_params new_save)
-    {
-        params = new_save; 
-        write_csv();
-    }
-    
     //to do: crear un nuevo save file en el csv al salir del juego
 
     private void read_csv ()
     {
         File csv = new File("save_files.csv");
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("save_files.csv")); 
-            BufferedReader reader = new BufferedReader(new FileReader("save_files.csv")))
+        boolean exist = csv.exists();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(csv)))
         {
-            if (csv.exists()) // si no existe lo crea
-            {
-                writer.write("name,class,level,exp,xposition,yposition");
-                writer.newLine();
-            }
-            else
+            if (exist) // si no existe lo crea
             {
                 String line;
 
@@ -60,9 +50,11 @@ public class model {
     {
         File csv = new File("save_files.csv");
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("save_files.csv")))
+        boolean exist = csv.exists();
+        //El true es para que se cree el filewriter en modo append y no me sobre escriba todo
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(csv, true)))
         {
-            if (csv.exists()) // si no existe lo crea
+            if (!exist) // si no existe lo crea
             {
                 writer.write("name,class,level,exp,xposition,yposition");
                 writer.newLine();
@@ -74,6 +66,21 @@ public class model {
         {
             e.printStackTrace();
         }
+    }
+
+    public void set_params(c_params save_file)
+    {
+        params = save_file;
+    }
+
+    public void save_game()
+    {
+        write_csv();
+    }
+
+    public List<String> get_saves()
+    {
+        return this.saves;
     }
 
 

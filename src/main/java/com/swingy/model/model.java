@@ -15,17 +15,17 @@ public class model {
 
     private c_params params;
     private List<String> saves = new ArrayList<String>();
+    private int x_position;
+    private int y_position;
 
     public model ()
     {
         read_csv();
     }
 
-    //to do: crear un nuevo save file en el csv al salir del juego
-
     private void read_csv ()
     {
-        File csv = new File("save_files.csv");
+        File csv = new File("save_files.txt");
 
         boolean exist = csv.exists();
 
@@ -48,7 +48,7 @@ public class model {
 
     private void write_csv ()
     {
-        File csv = new File("save_files.csv");
+        File csv = new File("save_files.txt");
 
         boolean exist = csv.exists();
         //El true es para que se cree el filewriter en modo append y no me sobre escriba todo
@@ -56,7 +56,7 @@ public class model {
         {
             if (!exist) // si no existe lo crea
             {
-                writer.write("name,class,level,exp,xposition,yposition");
+                writer.write("name,class,level,exp,attack,defense,hit_points,luck,artifact");
                 writer.newLine();
             }
             writer.write(params.to_str(params));
@@ -71,6 +71,22 @@ public class model {
     public void set_params(c_params save_file)
     {
         params = save_file;
+    }
+
+    public void set_position(int x, int y)
+    {
+        x_position = x;
+        y_position = y;
+    }
+
+    public int get_x_position(int x)
+    {
+        return x_position;
+    }
+
+    public int get_y_position(int y)
+    {
+        return y_position;
     }
 
     public void save_game()

@@ -11,8 +11,11 @@ public class c_params
     private String c_class;
     private int c_level;
     private int exp_points;
-    private int c_xposition;
-    private int c_yposition;
+    private int attack;
+    private int defense;
+    private int hit_points;
+    private int luck;
+    private String artifact;
     
     public c_params(String str)
     {
@@ -23,8 +26,11 @@ public class c_params
         this.c_class = it.next();
         this.c_level = Integer.parseInt(it.next());
         this.exp_points = Integer.parseInt(it.next());
-        this.c_xposition = Integer.parseInt(it.next());
-        this.c_yposition = Integer.parseInt(it.next());
+        this.attack = Integer.parseInt(it.next());
+        this.defense = Integer.parseInt(it.next());
+        this.hit_points = Integer.parseInt(it.next());
+        this.luck = Integer.parseInt(it.next());
+        this.artifact = it.next();
     }
 
     public c_params()
@@ -33,8 +39,11 @@ public class c_params
         this.c_class = "Mago";
         this.c_level = 1;
         this.exp_points = 0;
-        this.c_xposition = 0;
-        this.c_yposition = 0;
+        this.attack = 10;
+        this.defense = 0;
+        this.hit_points = 100;
+        this.luck = 5;
+        this.artifact = "nothing";
     }
 
     public String get_name()
@@ -57,14 +66,29 @@ public class c_params
         return exp_points;
     } 
 
-    public int get_xposition()
+    public int get_attack()
     {
-        return c_xposition;
+        return attack;
     }
     
-    public int get_yposition()
+    public int get_defense()
     {
-        return c_yposition;
+        return defense;
+    }
+    
+    public int get_luck()
+    {
+        return luck;
+    }
+
+    public int get_hit_points()
+    {
+        return hit_points;
+    }
+    
+    public int get_artifact()
+    {
+        return defense;
     }
 
     public void set_name(String name)
@@ -87,18 +111,33 @@ public class c_params
         exp_points = exp;
     } 
 
-    public void set_xposition(int x)
+    public void set_attack(int atk)
     {
-        c_xposition = x;
+        attack = atk;
     }
     
-    public void set_yposition(int y)
+    public void set_defense(int def)
     {
-        c_yposition = y;
+        defense = def;
+    }
+    
+    public void set_luck(int lk)
+    {
+        luck = lk;
+    }
+
+    public void set_hit_points(int hp)
+    {
+        hit_points = hp;
+    }
+    
+    public void set_artifact(String art)
+    {
+        artifact = art;
     }
 
     public String to_str(c_params param)
     {
-        return c_name + "," + c_class + "," + c_level + "," + exp_points + "," + c_xposition + "," + c_yposition;
+        return c_name + "," + c_class + "," + c_level + "," + exp_points + "," + attack + "," + defense + "," + hit_points + "," + luck + "," + artifact;
     }
 }

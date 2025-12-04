@@ -254,7 +254,16 @@ public class view {
         System.out.print("\033[H\033[2J");
         System.out.println( "..." );
 
-        return c_name + "," + c_class + "," + "0" + "," + "0" + "," + "0" + "," + "0";
+        if (c_class.equals("Mage"))
+            return c_name + "," + c_class + "," + "1" + "," + "0" + "," + "20" + "," + "0" + "," + "100" + "," + "5" + "," + "nothing";
+        if (c_class.equals("Warrior"))
+            return c_name + "," + c_class + "," + "1" + "," + "0" + "," + "5" + "," + "2" + "," + "150" + "," + "0" + "," + "nothing";
+        if (c_class.equals("Archer"))
+            return c_name + "," + c_class + "," + "1" + "," + "0" + "," + "10" + "," + "0" + "," + "100" + "," + "50" + "," + "nothing";
+        if (c_class.equals("Rogue"))
+            return c_name + "," + c_class + "," + "1" + "," + "0" + "," + "20" + "," + "0" + "," + "80" + "," + "20" + "," + "nothing";
+        else
+            return null;
     }
 
     public String main_menu_terminal ()

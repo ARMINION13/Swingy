@@ -1,6 +1,7 @@
 package com.swingy.controller;
 
 import java.awt.BorderLayout;
+import java.lang.Math;
 
 import com.swingy.model.*;
 import com.swingy.view.*;
@@ -38,6 +39,35 @@ public class controller {
         {
             input = main_view.create_character_terminal();
             main_model.set_params(new c_params(input));
+        }
+
+        while (!input.equals("Derrota") && !input.equals("Salir"))
+        {
+            input = main_view.move_character_terminal();
+
+            if (input.equals("Victoria"))
+            {
+                input = main_view.win_terminal();
+                break;
+            }
+            
+            if ((int)(Math.random() * 2) == 0)
+            {
+                input = main_view.enemie_found_terminal();
+                if (input.equals("Fight"))
+                    //Simular pelea y devolver resultado
+                else
+                {
+                    //Simular huida y devolver resultado
+                    //Si falla simular pelea y devolver resultado
+                }
+            }
+        }
+
+        if (input.equals("Derrota"))
+        {
+            input = main_view.defeat_terminal();
+            break;
         }
 
         main_model.save_game();

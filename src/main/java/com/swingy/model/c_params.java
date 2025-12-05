@@ -44,7 +44,7 @@ public class c_params
         this.defense = 0;
         this.hit_points = 100;
         this.luck = (int)(Math.random() * 10);
-        this.artifact = "nothing";
+        this.artifact = "Nothing";
     }
 
     public String get_name()
@@ -87,9 +87,9 @@ public class c_params
         return hit_points;
     }
     
-    public int get_artifact()
+    public String get_artifact()
     {
-        return defense;
+        return artifact;
     }
 
     public void set_name(String name)

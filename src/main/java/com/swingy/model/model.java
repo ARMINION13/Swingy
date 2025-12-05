@@ -14,13 +14,19 @@ public class model {
 
 
     private c_params params;
-    private List<String> saves = new ArrayList<String>();
+    private List<String> saves;
     private int x_position;
     private int y_position;
 
     public model ()
     {
+        saves = new ArrayList<String>();
+        params = new c_params();
         read_csv();
+        x_position = ((params.get_level() - 1) * 5 + 10 - (params.get_level() % 2)) / 2;
+        y_position = ((params.get_level() - 1) * 5 + 10 - (params.get_level() % 2)) / 2;
+        
+        System.out.println(x_position + " , " + y_position);
     }
 
     private void read_csv ()

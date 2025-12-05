@@ -5,8 +5,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.io.InputStream;
-import java.util.List;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -93,7 +93,7 @@ public class view {
 
 
 
-    //PANELES
+    //PANELES GUI
 
     private void create_title_panel()
     {
@@ -152,6 +152,8 @@ public class view {
 
     private void create_select_save_panel()
     {
+        //Crear panel con un selector con scroll
+
         list = new JList<>(saves.toArray(new String[0]));
 
         list.setFont(MedievalSharp.deriveFont(24f));
@@ -239,14 +241,14 @@ public class view {
         //Creacion de personaje
         System.out.print("\033[H\033[2J"); // limpia la terminal
 
-        System.out.println( "Introduce your name: " );
+        System.out.println( " Introduce your name: " );
         @Pattern(regexp = "^[\\p{L}]+$", message = "Solo letras") // valida input solo letras
         String c_name = System.console().readLine();
         
         System.out.print("\033[H\033[2J");
 
-        System.out.println( "\nChoose a class !!\n" );
-        System.out.println( " Mage || Warrior || Archer || Rogue" );
+        System.out.println( "\n Choose a class !! \n" );
+        System.out.println( " Mage || Warrior || Archer || Rogue " );
         @Pattern(regexp = "^[\\p{L}]+$", message = "Solo letras")
         String c_class = System.console().readLine();
 
@@ -255,11 +257,11 @@ public class view {
 
         if (c_class.equals("Mage"))
             input = c_name + "," + c_class + "," + "1" + "," + "0" + "," + "25" + "," + "0" + "," + "100" + "," + "5" + "," + "nothing";
-        if (c_class.equals("Warrior"))
+        else if (c_class.equals("Warrior"))
             input = c_name + "," + c_class + "," + "1" + "," + "0" + "," + "10" + "," + "2" + "," + "150" + "," + "0" + "," + "nothing";
-        if (c_class.equals("Archer"))
+        else if (c_class.equals("Archer"))
             input = c_name + "," + c_class + "," + "1" + "," + "0" + "," + "15" + "," + "0" + "," + "100" + "," + "50" + "," + "nothing";
-        if (c_class.equals("Rogue"))
+        else if (c_class.equals("Rogue"))
             input = c_name + "," + c_class + "," + "1" + "," + "0" + "," + "25" + "," + "0" + "," + "80" + "," + "20" + "," + "nothing";
         else
             input = null;
@@ -274,8 +276,8 @@ public class view {
         //Opciones del menu principal
         System.out.print("\033[H\033[2J");
 
-        System.out.println( "\nWelcome to Swingy !!\n" );
-        System.out.println( "New Game || Continue" );
+        System.out.println( "\n Welcome to Swingy !! \n" );
+        System.out.println( " New Game || Continue " );
         @Pattern(regexp = "^[\\p{L}]+$", message = "Solo letras")
         String input = System.console().readLine();
 
@@ -310,24 +312,41 @@ public class view {
         System.out.print("\033[H\033[2J");
 
         System.out.println( "\n Choose your way !!\n" );
-        System.out.println( "North || South || East || West" );
+        System.out.println( " North || South || East || West " );
         @Pattern(regexp = "^[\\p{L}]+$", message = "Solo letras")
         String input = System.console().readLine();
         
         return input;
     }
 
-    public void win_terminal()
+    public String win_terminal()
     {
         //Ganaste la partida
         System.out.print("\033[H\033[2J");
         System.out.println( "\n You Won !!\n" );
+
+        System.out.println( "\n Press enter to continue !!\n" );
+
+        @Pattern(regexp = "^[\\p{L}]+$", message = "Solo letras")
+        String input = System.console().readLine();
+
+        if (input.equals("Exit"))
+            return input;
+        return "Victory";
     }
 
-    public void defeat_terminal()
+    public String defeat_terminal()
     {
         System.out.print("\033[H\033[2J");
         System.out.println( "\n You Lost !!\n" );
+        System.out.println( "\n Press enter to continue !!\n" );
+
+        @Pattern(regexp = "^[\\p{L}]+$", message = "Solo letras")
+        String input = System.console().readLine();
+
+        if (input.equals("Exit"))
+            return input;
+        return "Defeat";
     }
 
     public String enemie_found_terminal()
@@ -336,11 +355,106 @@ public class view {
         System.out.print("\033[H\033[2J");
 
         System.out.println( "\n An enemie has appeared !!\n" );
-        System.out.println( "Fight || Run" );
+        System.out.println( " Fight || Run " );
         @Pattern(regexp = "^[\\p{L}]+$", message = "Solo letras")
         String input = System.console().readLine();
         
         return input;        
+    }
+
+    public String arrive_terminal()
+    {
+        //Escapaste de la pelea
+        System.out.print("\033[H\033[2J");
+        System.out.println( "\n You Arrived !!\n" );
+        System.out.println( "\n Press enter to continue !!\n" );
+        
+        @Pattern(regexp = "^[\\p{L}]+$", message = "Solo letras")
+        String input = System.console().readLine();
+
+        if (input.equals("Exit"))
+            return input;
+        return "Arrived";
+    }
+
+    public String won_fight_terminal()
+    {
+        //Escapaste de la pelea
+        System.out.print("\n");
+        System.out.println( "\n You won the fight !!\n" );
+        System.out.println( "\n Press enter to continue !!\n" );
+        
+        @Pattern(regexp = "^[\\p{L}]+$", message = "Solo letras")
+        String input = System.console().readLine();
+
+        if (input.equals("Exit"))
+            return input;
+        return "Won";
+    }
+
+    public String escaped_terminal()
+    {
+        //Escapaste de la pelea
+        System.out.print("\033[H\033[2J");
+        System.out.println( "\n You Escaped !!\n" );
+        System.out.println( "\n Press enter to continue !!\n" );
+        
+        @Pattern(regexp = "^[\\p{L}]+$", message = "Solo letras")
+        String input = System.console().readLine();
+
+        if (input.equals("Exit"))
+            return input;
+        return "Escaped";
+    }
+
+    public String escape_fail_terminal()
+    {
+        //Escapaste de la pelea
+        System.out.print("\033[H\033[2J");
+        System.out.println( "\n You Couldn't Escape !!\n" );
+        System.out.println( "\n Press enter to continue !!\n" );
+        
+        @Pattern(regexp = "^[\\p{L}]+$", message = "Solo letras")
+        String input = System.console().readLine();
+
+        if (input.equals("Exit"))
+            return input;
+        return "Failed";
+    }
+
+    public String artifact_terminal()
+    {
+        int ran = (int)(Math.random() * 3);
+        String artifact = new String();
+
+        System.out.print("\033[H\033[2J");
+
+        if (ran == 0)
+        {
+            artifact = "Weapon";
+            System.out.println( "\n The enemie dropped a Weapon !!\n" );
+        }
+        if (ran == 1)
+        {
+            artifact = "Armor";
+            System.out.println( "\n The enemie dropped an Armor !!\n" );
+        }
+        if (ran == 2)
+        {
+            artifact = "Helmet";
+            System.out.println( "\n The enemie dropped a Helmet !!\n" );
+        }
+
+        System.out.println( " Take || Leave " );
+        @Pattern(regexp = "^[\\p{L}]+$", message = "Solo letras")
+        String input = System.console().readLine();
+
+        if (input.equals("Exit"))
+            return input;
+        if (input.equals("Leave"))
+            return input;
+        else
+            return artifact;
     }
 }
 

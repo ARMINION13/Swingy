@@ -79,14 +79,19 @@ public class model {
         y_position = y;
     }
 
-    public int get_x_position(int x)
+    public int get_x_position()
     {
         return x_position;
     }
 
-    public int get_y_position(int y)
+    public int get_y_position()
     {
         return y_position;
+    }
+
+    public c_params get_params()
+    {
+        return params;
     }
 
     public void save_game()

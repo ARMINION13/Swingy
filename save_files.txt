@@ -9,3 +9,4 @@ Carlos,Mage,1,0,20,0,100,5,nothing
 Carlos,Mage,1,0,20,0,100,5,nothing
 Carlos,Mage,1,0,20,0,100,5,nothing
 Carlos,Mage,1,0,20,0,100,5,nothing
+Carlos,Mage,1,0,20,0,100,5,nothing

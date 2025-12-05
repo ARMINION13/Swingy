@@ -252,18 +252,21 @@ public class view {
 
         
         System.out.print("\033[H\033[2J");
-        System.out.println( "..." );
 
         if (c_class.equals("Mage"))
-            return c_name + "," + c_class + "," + "1" + "," + "0" + "," + "20" + "," + "0" + "," + "100" + "," + "5" + "," + "nothing";
+            input = c_name + "," + c_class + "," + "1" + "," + "0" + "," + "25" + "," + "0" + "," + "100" + "," + "5" + "," + "nothing";
         if (c_class.equals("Warrior"))
-            return c_name + "," + c_class + "," + "1" + "," + "0" + "," + "5" + "," + "2" + "," + "150" + "," + "0" + "," + "nothing";
+            input = c_name + "," + c_class + "," + "1" + "," + "0" + "," + "10" + "," + "2" + "," + "150" + "," + "0" + "," + "nothing";
         if (c_class.equals("Archer"))
-            return c_name + "," + c_class + "," + "1" + "," + "0" + "," + "10" + "," + "0" + "," + "100" + "," + "50" + "," + "nothing";
+            input = c_name + "," + c_class + "," + "1" + "," + "0" + "," + "15" + "," + "0" + "," + "100" + "," + "50" + "," + "nothing";
         if (c_class.equals("Rogue"))
-            return c_name + "," + c_class + "," + "1" + "," + "0" + "," + "20" + "," + "0" + "," + "80" + "," + "20" + "," + "nothing";
+            input = c_name + "," + c_class + "," + "1" + "," + "0" + "," + "25" + "," + "0" + "," + "80" + "," + "20" + "," + "nothing";
         else
-            return null;
+            input = null;
+
+        System.out.println(input);
+
+        return input;
     }
 
     public String main_menu_terminal ()
@@ -285,7 +288,7 @@ public class view {
 
     public String select_save_terminal ()
     {
-        //Opciones del menu principal
+        //Seleccionar el archivo de guardado
         int i = 0;
         System.out.print("\033[H\033[2J");
 
@@ -299,6 +302,45 @@ public class view {
         System.out.println( "..." );
 
         return saves.get(Integer.parseInt(input));
+    }
+
+    public String move_character_terminal()
+    {
+        //mover personaje
+        System.out.print("\033[H\033[2J");
+
+        System.out.println( "\n Choose your way !!\n" );
+        System.out.println( "North || South || East || West" );
+        @Pattern(regexp = "^[\\p{L}]+$", message = "Solo letras")
+        String input = System.console().readLine();
+        
+        return input;
+    }
+
+    public void win_terminal()
+    {
+        //Ganaste la partida
+        System.out.print("\033[H\033[2J");
+        System.out.println( "\n You Won !!\n" );
+    }
+
+    public void defeat_terminal()
+    {
+        System.out.print("\033[H\033[2J");
+        System.out.println( "\n You Lost !!\n" );
+    }
+
+    public String enemie_found_terminal()
+    {
+        //Encuentras un enemigo
+        System.out.print("\033[H\033[2J");
+
+        System.out.println( "\n An enemie has appeared !!\n" );
+        System.out.println( "Fight || Run" );
+        @Pattern(regexp = "^[\\p{L}]+$", message = "Solo letras")
+        String input = System.console().readLine();
+        
+        return input;        
     }
 }
 

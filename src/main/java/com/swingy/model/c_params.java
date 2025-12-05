@@ -35,14 +35,15 @@ public class c_params
 
     public c_params()
     {
-        this.c_name = "Juan";
-        this.c_class = "Mago";
+        //lepton ref
+        this.c_name = "Froid";
+        this.c_class = "Murloc";
         this.c_level = 1;
         this.exp_points = 0;
         this.attack = 10;
         this.defense = 0;
         this.hit_points = 100;
-        this.luck = 5;
+        this.luck = (int)(Math.random() * 10);
         this.artifact = "nothing";
     }
 

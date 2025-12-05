@@ -2,4 +2,4 @@
 Maven project with java about making a simple rpg game.
 
 <!-- HINT: mvnw clean -->
-<!-- HINT: mvnw compile exec:java  -->
+<!-- HINT: mvnw compile exec:java -Dexec.args="console" -->

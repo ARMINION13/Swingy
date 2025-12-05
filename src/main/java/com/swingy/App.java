@@ -8,6 +8,6 @@ public class App
     {
         controller con = new controller();
         
-        con.start();
+        con.start(args[0]);
     }
 }
